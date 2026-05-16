@@ -1,0 +1,489 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>气体放电与等离子体虚拟实验平台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=IBM+Plex+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css?v=20260517-guide-home" />
+</head>
+<body>
+  <div class="app-shell">
+    <div class="learning-home" id="learningHome">
+      <div class="learning-home__masthead" aria-hidden="true"></div>
+      <div class="learning-home__layout">
+        <aside class="learning-nav" aria-label="实验学习导航">
+          <div class="learning-brand">
+            <span class="learning-brand__mark">E</span>
+            <span><b>仿真实验</b><small>Experiment</small></span>
+          </div>
+          <button type="button" class="learning-nav__item active" data-learning-section="intro">实验简介</button>
+          <button type="button" class="learning-nav__item" data-learning-section="principle">实验原理</button>
+          <button type="button" class="learning-nav__item" data-learning-section="content">实验内容</button>
+          <button type="button" class="learning-nav__item" data-learning-section="instrument">实验仪器</button>
+          <button type="button" class="learning-nav__item" data-learning-section="guide">实验指导</button>
+          <button type="button" class="learning-nav__item" data-learning-section="demo">在线演示</button>
+          <button type="button" class="learning-nav__item" data-learning-section="download">实验指导书下载</button>
+          <button type="button" class="learning-nav__item learning-nav__item--start" id="learningStartBtn">开始实验</button>
+          <button type="button" class="learning-nav__item" data-learning-section="report">实验报告</button>
+          <button type="button" class="learning-nav__item" data-learning-section="evaluation">教学评价</button>
+        </aside>
+
+        <main class="learning-content" aria-live="polite">
+          <div class="learning-breadcrumb">所在位置：仿真实验 / 气体放电与等离子体实验</div>
+
+          <section class="learning-section active" data-learning-panel="intro">
+            <h2>实验简介</h2>
+            <p>气体放电与等离子体虚拟实验平台围绕低压气体放电与等离子体诊断实验构建。平台以真实气体放电与等离子实验仪为原型，将真空腔体、电极间距调节、高压电源、气压控制、双探针测量和数据分析模块整合到浏览器端三维场景中。</p>
+            <p>学生在虚拟环境中调节极板间距、气压、电压、探针高度和探针电压，观察电晕、辉光、火花和弧光等典型放电现象，并同步读取理论击穿电压、环境修正电压、模拟实际电压、场强、电流和功率等物理量。</p>
+            <p>平台服务于真实实验前的认知建构、课堂中的演示讲解和实验后的数据复盘，将高压危险、瞬态现象和多参数耦合问题转化为可重复、可对比、可量化的学习过程。</p>
+            <div class="learning-highlight">
+              <span><b>可观察四种气体放电</b>电晕、辉光、火花、弧光在不同电压、气压和电极条件下呈现不同形态。</span>
+              <span><b>可验证帕邢定律</b>通过 p、d、Ub 数据建立 Ub-pd 曲线，呈现击穿电压先下降后上升的规律。</span>
+              <span><b>可测等离子体参数</b>通过朗缪尔双探针 I-V 曲线提取电子温度 Te 与电子密度 ne。</span>
+            </div>
+            <h3>学习目标</h3>
+            <ul class="learning-list learning-list--two">
+              <li>理解低压气体从绝缘状态转变为导电状态的基本条件。</li>
+              <li>认识电离、电子雪崩、流柱发展、击穿和放电通道形成过程。</li>
+              <li>掌握气压 p、极间距 d 与击穿电压 Ub 的关系。</li>
+              <li>区分电晕、辉光、火花、弧光四类放电现象。</li>
+              <li>利用 I-V 曲线认识电子温度和电子密度的诊断过程。</li>
+            </ul>
+          </section>
+
+          <section class="learning-section" data-learning-panel="principle">
+            <h2>实验原理</h2>
+            <p>低压气体在外加电场作用下并非始终保持绝缘状态。少量自由电子获得电场能量后与中性粒子发生非弹性碰撞；当电子能量达到电离阈值时，碰撞会产生新的电子和正离子，电荷数量呈级联增长并形成电子雪崩。电子雪崩与二次电子发射、光电离和空间电荷效应共同作用后，放电通道逐渐形成。</p>
+            <ul class="learning-list">
+              <li>电压决定电子从电场中获得能量的能力。</li>
+              <li>极间距影响平均电场强度 E=U/d 与电子加速路径。</li>
+              <li>气压改变电子平均自由程和单位路径碰撞次数。</li>
+              <li>电极形状改变局部场强，球形、针状和边缘区域更容易出现局部场增强。</li>
+            </ul>
+            <h3>帕邢定律</h3>
+            <p>在近似均匀电场中，气体击穿电压 Ub 与气压 p 和极间距 d 的乘积 pd 密切相关。pd 较小时，电子碰撞次数不足；pd 较大时，电子在两次碰撞之间获得的能量不足，因此帕邢曲线呈现先下降后上升的特征，并存在最小击穿电压。</p>
+            <div class="learning-formula">Ub = Bpd / { ln(Apd) - ln[ ln(1 + 1/γ) ] }</div>
+            <h3>四类典型放电现象</h3>
+            <div class="learning-table-wrap">
+              <table class="learning-table">
+                <thead><tr><th>放电类型</th><th>形成条件</th><th>现象特征</th><th>物理含义</th></tr></thead>
+                <tbody>
+                  <tr><td>电晕放电</td><td>非均匀电场、局部场强较高</td><td>局部发光，间隙未完全贯通</td><td>局部电离增强，整体仍未形成强导电通道</td></tr>
+                  <tr><td>辉光放电</td><td>低压、小电流、稳定供电</td><td>发光区域稳定，亮度连续</td><td>气体维持稳定电离与复合过程</td></tr>
+                  <tr><td>火花放电</td><td>击穿瞬间形成导电通道</td><td>亮光突发，持续时间短</td><td>瞬态击穿和电流脉冲</td></tr>
+                  <tr><td>弧光放电</td><td>击穿后电流较大且通道持续</td><td>亮度强，热效应明显</td><td>持续导电通道与电极热发射作用增强</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <h3>朗缪尔双探针诊断</h3>
+            <p>朗缪尔双探针由两个形状、尺寸和材料一致的金属探针组成。实验中对两探针施加扫描电压 V，并记录探针回路电流 I，得到 I-V 特性曲线；通过曲线斜率、饱和电流和探针有效面积，可估算电子温度 Te 与电子密度 ne。</p>
+          </section>
+
+          <section class="learning-section" data-learning-panel="content">
+            <h2>实验内容</h2>
+            <div class="learning-grid">
+              <div><b>四类气体放电现象观察</b><span>固定电极类型和极间距，逐步改变气压或电压，比较电晕、辉光、火花和弧光的形态差异。</span></div>
+              <div><b>帕邢定律验证</b><span>选择平行板电极，设置多组 p-d 组合，记录刚击穿时的 Ub 并绘制 Ub-pd 曲线。</span></div>
+              <div><b>朗缪尔双探针实验</b><span>建立稳定辉光放电条件，扫描探针电压并记录探针电流，拟合得到 Te 和 ne。</span></div>
+              <div><b>环境修正与模型比较</b><span>读取或输入实验室温湿度，比较标准理论、环境修正和模拟实际击穿电压。</span></div>
+            </div>
+          </section>
+
+          <section class="learning-section" data-learning-panel="instrument">
+            <h2>实验仪器</h2>
+            <p>虚拟平台对应的真实实验系统由真空腔体、高压电源、控制仪、真空泵、电极、双探针、电流测量与安全防护部件共同构成。虚拟模型将这些硬件抽象为可点击、可调节、可读数的三维交互对象。</p>
+            <div class="learning-table-wrap">
+              <table class="learning-table learning-table--compact">
+                <thead><tr><th>真实部件</th><th>实验作用</th><th>虚拟平台对应功能</th></tr></thead>
+                <tbody>
+                  <tr><td>金属真空室</td><td>提供低压放电空间，安装电极和双探针。</td><td>三维腔体模型、气压读数、放电区域显示。</td></tr>
+                  <tr><td>平行板/球形电极</td><td>形成不同电场分布，影响局部场强和击穿条件。</td><td>电极类型切换、极间距调节。</td></tr>
+                  <tr><td>高压直流电源</td><td>为电晕、辉光、弧光和击穿实验供电。</td><td>两极板电压滑条、输出读数、击穿判定。</td></tr>
+                  <tr><td>真空泵与阀门</td><td>改变真空室气压。</td><td>气压调节、pd 计算、环境修正。</td></tr>
+                  <tr><td>控制仪与步进电机</td><td>调节极板间距、探针左右位置和升降位置。</td><td>极板间距、探针高度与位置控制。</td></tr>
+                  <tr><td>直流稳压电源与万用表</td><td>为双探针回路供电并读取电流。</td><td>探针电压、探针电流、I-V 曲线生成。</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="learning-section" data-learning-panel="guide">
+            <h2>实验指导</h2>
+            <h3>安全边界</h3>
+            <ul class="learning-list">
+              <li>真实高压设备通电状态下禁止接触电源线金属部分和电极。</li>
+              <li>高压电源、稳压直流电源、真空泵和实验装置底板必须可靠接地。</li>
+              <li>更换电极、调整电极、打开真空室上盖前必须断电并放气。</li>
+              <li>放电后的电极温度较高，接触前必须完成冷却。</li>
+              <li>双探针移动过程中不得与阳极极板直接接触。</li>
+            </ul>
+            <h3>操作流程</h3>
+            <ol>
+              <li>进入平台首页，确认三维模型、参数面板和数据面板加载完成。</li>
+              <li>打开电极控制界面，选择电极类型并设置极板间距 d。</li>
+              <li>打开气压控制界面，设置气压 p，观察 pd 数值变化。</li>
+              <li>打开主电源控制界面，设置两极板电压 U。</li>
+              <li>启动放电，观察放电形态和实时数据变化。</li>
+              <li>进入帕邢定律验证模块或朗缪尔双探针模块，录入或生成实验数据。</li>
+              <li>导出 CSV 数据表和 PNG 曲线图，完成实验报告。</li>
+            </ol>
+            <h3>数据记录规则</h3>
+            <ul class="learning-list">
+              <li>击穿电压读取击穿瞬间的电压值，并结合电流或功率突变判断。</li>
+              <li>同一组实验中保持一个主变量变化，其余条件尽量一致。</li>
+              <li>帕邢曲线实验记录 p、d、pd、Ub 四类数据。</li>
+              <li>双探针实验记录探针电压 Up 与探针电流 Ip。</li>
+            </ul>
+          </section>
+
+          <section class="learning-section" data-learning-panel="demo">
+            <h2>在线演示</h2>
+            <p>在线演示模块以三维装置为核心界面，展示“调节参数—触发放电—读取数据—进入分析”的完整闭环。演示过程从宏观装置认知进入参数控制，再进入放电类型对比和定量曲线分析。</p>
+            <div class="learning-grid">
+              <div><b>装置导入</b><span>展示真空腔体、电极、高压电源、真空泵和探针位置，建立真实仪器与虚拟模型之间的对应关系。</span></div>
+              <div><b>参数调节</b><span>改变极间距、气压、电压、探针高度和探针电压，观察参数变化对 pd、场强和击穿阈值的影响。</span></div>
+              <div><b>现象观察</b><span>显示电晕、辉光、火花、弧光等放电效果，比较不同放电类型的空间形态和稳定性。</span></div>
+              <div><b>数据分析</b><span>生成 Ub-pd 曲线或 I-V 曲线，由曲线读取物理规律和等离子体诊断参数。</span></div>
+            </div>
+            <div class="learning-actions">
+              <button type="button" class="learning-primary" data-show-experiment-entry>进入实验选择</button>
+            </div>
+          </section>
+
+          <section class="learning-section" data-learning-panel="download">
+            <h2>实验指导书下载</h2>
+            <p>下载区提供实验学习、数据记录和报告撰写所需文件。文件围绕实验前准备、实验中记录、实验后分析三个阶段组织，帮助学生把在线操作结果转化为规范实验成果。</p>
+            <div class="learning-table-wrap">
+              <table class="learning-table">
+                <thead><tr><th>文件名称</th><th>主要内容</th><th>使用阶段</th></tr></thead>
+                <tbody>
+                  <tr><td>实验操作手册</td><td>安全边界、仪器结构、实验流程、数据记录格式。</td><td>实验前与实验中</td></tr>
+                  <tr><td>帕邢定律数据表</td><td>p、d、pd、Ub 数据记录表，曲线绘图区域。</td><td>击穿电压测量</td></tr>
+                  <tr><td>朗缪尔双探针数据表</td><td>Up、Ip 数据记录表，I-V 曲线分析区域。</td><td>等离子体诊断</td></tr>
+                  <tr><td>实验报告模板</td><td>实验目的、原理、步骤、数据、图像、结论与反思。</td><td>实验后</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="learning-actions">
+              <a class="learning-primary learning-primary--link" href="./气体放电实验指导书.docx" download>下载实验指导书</a>
+            </div>
+          </section>
+
+          <section class="learning-section" data-learning-panel="report">
+            <h2>实验报告</h2>
+            <p>实验报告围绕“实验目的—理论基础—操作过程—数据结果—物理分析—结论反思”展开。报告应客观描述实验条件、参数来源、图像结果和误差因素，避免只罗列现象。</p>
+            <div class="learning-table-wrap">
+              <table class="learning-table learning-table--compact">
+                <thead><tr><th>报告部分</th><th>写作内容</th><th>评价重点</th></tr></thead>
+                <tbody>
+                  <tr><td>实验目的</td><td>四类放电观察、帕邢定律验证、双探针诊断目标。</td><td>目标与后文数据对应。</td></tr>
+                  <tr><td>实验原理</td><td>气体击穿、帕邢定律、放电类型、双探针公式。</td><td>概念准确、公式符号清晰。</td></tr>
+                  <tr><td>实验步骤</td><td>按时间顺序记录参数设置、启动放电、采集数据和导出结果。</td><td>过程可复现。</td></tr>
+                  <tr><td>结果处理</td><td>绘制 Ub-pd 曲线或 I-V 曲线，计算 Te 和 ne。</td><td>图像规范、分析具有物理解释。</td></tr>
+                  <tr><td>误差分析</td><td>气压读数、极间距、环境温湿度、模型校准和操作因素。</td><td>能区分理论模型与实验现实。</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="learning-section" data-learning-panel="evaluation">
+            <h2>教学评价</h2>
+            <p>教学评价从安全意识、原理理解、平台操作、数据处理、结果表达和拓展反思六个方面展开。评价对象不仅包括最终曲线和报告结果，也包括参数设置是否合理、操作过程是否规范、物理解释是否自洽。</p>
+            <div class="learning-table-wrap">
+              <table class="learning-table learning-table--compact">
+                <thead><tr><th>评价维度</th><th>评价内容</th><th>分值</th><th>评分点</th></tr></thead>
+                <tbody>
+                  <tr><td>安全意识</td><td>高压、接地、真空、探针和电极安全边界。</td><td>15</td><td>能识别风险并按流程操作。</td></tr>
+                  <tr><td>原理理解</td><td>气体击穿、帕邢定律、四类放电、双探针诊断。</td><td>20</td><td>概念准确，能解释参数变化的物理原因。</td></tr>
+                  <tr><td>平台操作</td><td>参数设置、放电启动、数据采集和模块切换。</td><td>15</td><td>步骤完整，实验过程可复现。</td></tr>
+                  <tr><td>数据处理</td><td>曲线绘制、拟合、导出和关键参数读取。</td><td>20</td><td>单位完整，图表规范，计算过程清楚。</td></tr>
+                  <tr><td>结果分析</td><td>从数据解释放电类型、击穿规律、Te 和 ne。</td><td>20</td><td>结论与数据一致，能分析差异来源。</td></tr>
+                  <tr><td>拓展反思</td><td>模型边界、环境修正、真实实验差异。</td><td>10</td><td>能指出虚拟仿真的优势与局限。</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <h3>测评题</h3>
+            <ol>
+              <li>均匀电场中击穿电压主要与哪两个量的乘积有关？</li>
+              <li>帕邢曲线为什么不是单调曲线？</li>
+              <li>辉光放电和火花放电在持续时间、稳定性和电流特征上有何差异？</li>
+              <li>朗缪尔双探针 I-V 曲线如何用于估算电子温度？</li>
+              <li>温度升高时，空气密度变化会怎样影响击穿电压估算？</li>
+            </ol>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div class="experiment-entry hidden" id="experimentEntry">
+      <div class="experiment-entry__inner">
+        <p class="experiment-entry__eyebrow">等离子体放电虚拟实验系统</p>
+        <h1>请选择实验项目</h1>
+        <div class="experiment-entry__actions">
+          <button type="button" class="experiment-choice" data-experiment="paschen">帕邢定律验证</button>
+          <button type="button" class="experiment-choice" data-experiment="langmuir">朗缪尔双探针</button>
+        </div>
+        <button type="button" class="experiment-entry__home" id="entryHomeBtn">返回首页</button>
+      </div>
+    </div>
+
+    <div class="top-tools">
+      <div class="top-tools__left">
+        <button class="action-btn data-record-btn" id="dataRecordBtn" type="button">数据记录</button>
+        <button class="action-btn reference-btn" id="experimentReferenceBtn" type="button">实验参考</button>
+        <button class="action-btn electrode-switch-btn" id="electrodeSwitchBtn" type="button">更换电极</button>
+      </div>
+      <button class="action-btn effect-btn" id="dischargeViewBtn">放电效果</button>
+    </div>
+
+    <div class="fixed-axis-widget" aria-hidden="true">
+      <span class="axis-line axis-line--x"><b>X</b></span>
+      <span class="axis-line axis-line--y"><b>Y</b></span>
+      <span class="axis-line axis-line--z"><b>Z</b></span>
+      <span class="axis-origin"></span>
+    </div>
+
+    <button class="action-btn home-return-btn" id="homeReturnBtn" type="button">返回上一页</button>
+
+    <aside class="left-panel glass">
+      <h1>等离子体放电实验平台</h1>
+      <p class="hint">点击 3D 设备部件可打开对应控制面板</p>
+
+      <section class="card">
+        <h2>实验参数</h2>
+        <div class="row">
+          <label for="electrodeType">极板类型</label>
+          <select id="electrodeType">
+            <option value="parallel">平行板电极</option>
+            <option value="sphere">球形电极</option>
+          </select>
+        </div>
+        <div class="row env-tools">
+          <label>环境修正</label>
+          <button type="button" id="legacyRefreshEnvBtn">读取当地温湿度</button>
+          <div class="env-manual">
+            <div class="env-row">
+              <input type="text" id="envCityInput" placeholder="手动输入城市" />
+              <button type="button" id="applyEnvCityBtn">按城市</button>
+            </div>
+            <div class="env-row">
+              <input type="number" id="envTempNumber" step="any" placeholder="实验室温度 °C" />
+              <input type="number" id="envHumidityNumber" step="any" placeholder="实验室湿度 %RH" />
+              <button type="button" id="applyEnvManualBtn">直填</button>
+            </div>
+          </div>
+          <div id="legacyEnvStatus" class="mini"></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>实时读数</h2>
+        <div class="stats" id="legacyLiveStats"></div>
+        <div id="legacyDataExplain" class="mini"></div>
+      </section>
+
+      <section class="card note">
+        <h2>操作提示</h2>
+        <ul>
+          <li>点击电极控制装置：调极板间距、探针高度</li>
+          <li>点击主电源装置：调两极板电压</li>
+          <li>点击真空罩（柱体）：调节气压</li>
+          <li>点击探针控制装置：调探针电压和电流</li>
+        </ul>
+      </section>
+    </aside>
+
+    <main class="center-panel glass">
+      <header>
+        <h2>3D 实验装置</h2>
+        <div class="mini" id="engineHint">渲染引擎加载中...</div>
+      </header>
+      <canvas id="sceneCanvas"></canvas>
+      <div class="floating-label" id="hoverLabel"></div>
+      <div class="scene-screen-readout scene-screen-readout--main" id="mainPowerSceneReadout">U 2300V</div>
+      <div class="scene-screen-readout scene-screen-readout--motor" id="motorGapSceneReadout">d 13cm</div>
+    </main>
+
+    <aside class="right-panel">
+      <button class="action-btn primary" id="startDischargeBtn">1. 开始放电</button>
+      <button class="action-btn" id="paschenBtn">2. 帕邢定律验证</button>
+      <button class="action-btn" id="langmuirBtn">3. 朗缪尔双探针实验</button>
+      <button class="action-btn" id="resetSceneBtn">4. 一键复位</button>
+    </aside>
+  </div>
+
+  <dialog id="dischargeViewDialog" class="modal discharge-view-modal">
+    <h3>放电效果特写</h3>
+    <p class="mini">实时放大极板间的放电区域，窗口可拖动。</p>
+    <canvas id="dischargeZoomCanvas" class="discharge-zoom-canvas" width="720" height="520"></canvas>
+    <div class="modal-actions"><button data-close>关闭</button></div>
+  </dialog>
+
+  <dialog id="experimentReferenceDialog" class="modal reference-modal">
+    <h3>实验参考</h3>
+    <div class="reference-stats" id="liveStats"></div>
+    <div class="modal-actions">
+      <button type="button" id="refreshEnvBtn">刷新当地温湿度</button>
+      <button data-close>关闭</button>
+    </div>
+  </dialog>
+
+  <dialog id="motorDialog" class="modal instrument-modal">
+    <h3>电极控制装置</h3>
+    <button class="modal-close" type="button" data-close aria-label="关闭电极控制装置">×</button>
+    <div class="device-panel device-panel--motor">
+      <img class="device-panel__bg" src="./control-panel-reference.png" alt="电极控制装置正面" />
+      <div class="device-screen device-screen--motor control-lcd" id="motorGapLiveDisplay" aria-live="polite"></div>
+      <button class="control-hotspot control-hotspot--f1" id="motorModeAutoBtn" type="button" aria-label="F1 自动执行"></button>
+      <button class="control-hotspot control-hotspot--f2" id="motorModeManualBtn" type="button" aria-label="F2 手动操作"></button>
+      <button class="control-hotspot control-hotspot--f3" id="motorProgramBtn" type="button" aria-label="F3 程序管理"></button>
+      <button class="control-hotspot control-hotspot--f4" id="motorZeroBtn" type="button" aria-label="F4 回机械零并清零"></button>
+      <button class="control-hotspot control-hotspot--xminus" id="motorGapLeftBtn" type="button" aria-label="极板向内移动，减小间距"></button>
+      <button class="control-hotspot control-hotspot--xplus" id="motorGapRightBtn" type="button" aria-label="极板向外移动，增大间距"></button>
+      <button class="control-hotspot control-hotspot--confirm" id="motorConfirmBtn" type="button" aria-label="确认输入"></button>
+      <button class="control-hotspot control-hotspot--start" id="motorStartBtn" type="button" aria-label="启动自动执行"></button>
+      <button class="control-hotspot control-hotspot--stop" id="motorStopBtn" type="button" aria-label="暂停自动执行"></button>
+      <div class="control-keypad" id="motorKeypad" aria-label="极板间距数字输入键盘">
+        <button type="button" data-motor-key="1" aria-label="输入 1"></button>
+        <button type="button" data-motor-key="2" aria-label="输入 2"></button>
+        <button type="button" data-motor-key="3" aria-label="输入 3"></button>
+        <button type="button" data-motor-key="4" aria-label="输入 4"></button>
+        <button type="button" data-motor-key="5" aria-label="输入 5"></button>
+        <button type="button" data-motor-key="6" aria-label="输入 6"></button>
+        <button type="button" data-motor-key="7" aria-label="输入 7"></button>
+        <button type="button" data-motor-key="8" aria-label="输入 8"></button>
+        <button type="button" data-motor-key="9" aria-label="输入 9"></button>
+        <button type="button" data-motor-key="back" aria-label="退格"></button>
+        <button type="button" data-motor-key="0" aria-label="输入 0"></button>
+        <button type="button" data-motor-key="." aria-label="输入小数点"></button>
+      </div>
+      <button class="probe-lever probe-lever--vup" id="probeVerticalUpBtn" type="button" aria-label="双探针竖直向上移动">▲</button>
+      <button class="probe-lever probe-lever--vdown" id="probeVerticalDownBtn" type="button" aria-label="双探针竖直向下移动">▼</button>
+      <button class="probe-lever probe-lever--hleft" id="probeHorizontalLeftBtn" type="button" aria-label="双探针水平向左移动">◀</button>
+      <button class="probe-lever probe-lever--hright" id="probeHorizontalRightBtn" type="button" aria-label="双探针水平向右移动">▶</button>
+      <button class="device-knob device-knob--motor" id="motorGapKnob" type="button" aria-label="调节极板间距"></button>
+      <div class="device-stepper device-stepper--motor" aria-label="极板间距微调">
+        <button type="button" id="motorGapMinus">-</button>
+        <button type="button" id="motorGapPlus">+</button>
+      </div>
+    </div>
+    <div class="device-subcontrols">
+      <div class="device-hidden-control">
+        <label>极板间距 d（cm）<div class="dual-control"><input type="range" id="gapSlider" min="0" max="80" step="0.5" /><input type="number" id="gapNumber" step="any" /></div></label>
+        <output id="gapOut"></output>
+      </div>
+      <label>探针高度 h（mm）<div class="dual-control"><input type="range" id="probeSlider" min="-80" max="80" step="1" /><input type="number" id="probeNumber" step="any" /></div></label>
+      <output id="probeOut"></output>
+    </div>
+  </dialog>
+
+  <dialog id="mainPowerDialog" class="modal instrument-modal">
+    <h3>主电源控制</h3>
+    <div class="device-panel device-panel--main">
+      <img class="device-panel__bg" src="./main_power_panel_texture_20260515.png" alt="主电源正面" />
+      <div class="device-screen device-screen--main power-lcd" id="mainPowerLiveDisplay" aria-live="polite"></div>
+      <button class="main-power-switch" id="mainPowerSwitchBtn" type="button" aria-pressed="false" aria-label="主电源通断开关">
+        <span class="main-power-switch__state">OFF</span>
+        <span class="main-power-switch__track"><span class="main-power-switch__thumb"></span></span>
+      </button>
+      <button class="device-knob device-knob--main" id="mainPowerKnob" type="button" aria-label="调节主电源电压"></button>
+      <div class="device-stepper device-stepper--main" aria-label="主电源电压微调">
+        <button type="button" id="mainPowerMinus">-</button>
+        <button type="button" id="mainPowerPlus">+</button>
+      </div>
+      <div class="device-digit-step device-digit-step--main" aria-label="主电源调节位数">
+        <button type="button" id="mainPowerPrevDigit">上一位</button>
+        <button type="button" id="mainPowerNextDigit">下一位</button>
+        <span id="mainPowerDigitHint">10V/档</span>
+      </div>
+    </div>
+    <div class="device-hidden-control">
+      <label>两极板电压 U（V）<div class="dual-control"><input type="range" id="mainVoltageSlider" min="0" max="8000" step="0.1" /><input type="number" id="mainVoltageNumber" step="any" /></div></label>
+      <output id="mainVoltageOut"></output>
+    </div>
+    <div class="modal-actions"><button data-close>关闭</button></div>
+  </dialog>
+
+  <dialog id="vacuumDialog" class="modal">
+    <h3>气压计气压控制</h3>
+    <label>气压 p（Pa）<div class="dual-control"><input type="range" id="pressureSlider" min="100" max="20000" step="10" /><input type="number" id="pressureNumber" step="any" /></div></label>
+    <output id="pressureOut"></output>
+    <div class="modal-actions"><button data-close>关闭</button></div>
+  </dialog>
+
+  <dialog id="probePowerDialog" class="modal instrument-modal">
+    <h3>探针控制装置</h3>
+    <button class="modal-close" type="button" data-close aria-label="关闭探针控制装置">×</button>
+    <div class="device-panel device-panel--probe">
+      <img class="device-panel__bg" src="./dc_power_supply_flat_front_texture_clean_20260512.png" alt="探针控制装置正面" />
+      <div class="device-screen device-screen--probe power-lcd power-lcd--probe" id="probePowerLiveDisplay" aria-live="polite"></div>
+      <button class="device-knob device-knob--probe-current" id="probeCurrentKnob" type="button" aria-label="调节探针回路电流"></button>
+      <button class="device-knob device-knob--probe-voltage" id="probeVoltageKnob" type="button" aria-label="调节探针回路电压"></button>
+      <div class="device-stepper device-stepper--probe-current" aria-label="探针回路电流微调">
+        <button type="button" id="probeCurrentMinus">-</button>
+        <button type="button" id="probeCurrentPlus">+</button>
+      </div>
+      <div class="device-stepper device-stepper--probe-voltage" aria-label="探针回路电压微调">
+        <button type="button" id="probeVoltageMinus">-</button>
+        <button type="button" id="probeVoltagePlus">+</button>
+      </div>
+    </div>
+    <div class="device-subcontrols">
+      <label>探针回路电压 Up（V）<div class="dual-control"><input type="range" id="probeVoltageSlider" min="-250" max="250" step="0.1" /><input type="number" id="probeVoltageNumber" step="any" /></div></label>
+      <output id="probeVoltageOut"></output>
+      <label>探针回路设定电流 Ip（uA）<div class="dual-control"><input type="range" id="probeCurrentSlider" min="-100" max="100" step="0.1" /><input type="number" id="probeCurrentNumber" step="any" /></div></label>
+      <output id="probeCurrentSetOut"></output>
+      <label>朗缪尔测量电流（uA）<div class="readonly-control"><input id="probeCurrentMeasured" type="text" readonly /></div></label>
+      <output id="probeCurrentOut"></output>
+    </div>
+    <div class="modal-actions"><button data-close>关闭</button></div>
+  </dialog>
+
+  <dialog id="paschenDialog" class="modal wide">
+    <h3>帕邢定律验证（至少 10 组）</h3>
+    <p class="mini">每条记录填写 p、d、击穿电压 Ub，系统自动计算 pd 并拟合帕邢曲线。</p>
+    <div class="table-wrap">
+      <table id="paschenTable">
+        <thead>
+          <tr><th>#</th><th>p (Pa)</th><th>d (mm)</th><th>pd (Pa·m)</th><th>Ub (V)</th><th>操作</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="modal-actions">
+      <button id="addPaschenRowBtn">新增一组</button>
+      <button id="analyzePaschenBtn">进入数据分析</button>
+      <button id="exportPaschenCsvBtn">导出表格 CSV</button>
+      <button id="exportPaschenPngBtn">导出图 PNG</button>
+      <button data-close>关闭</button>
+    </div>
+    <canvas id="paschenCanvas" width="900" height="460"></canvas>
+    <div id="paschenSummary" class="mini"></div>
+  </dialog>
+
+  <dialog id="langmuirDialog" class="modal wide">
+    <h3>朗缪尔双探针实验</h3>
+    <div class="langmuir-grid">
+      <label>扫描起点 Umin (V)<input id="langUmin" type="number" value="-100" /></label>
+      <label>扫描终点 Umax (V)<input id="langUmax" type="number" value="100" /></label>
+      <label>点数 N<input id="langN" type="number" value="48" step="1" /></label>
+      <label>离子饱和电流 Isat (uA)<input id="langIsat" type="number" value="17.71" step="0.01" /></label>
+      <label>探针有效截面积 A (cm²)<input id="langArea" type="number" value="0.00385" step="0.00001" /></label>
+      <button id="runLangmuirBtn">生成 I-V 与参数</button>
+    </div>
+    <canvas id="langmuirCanvas" width="900" height="460"></canvas>
+    <div id="langmuirSummary" class="mini"></div>
+    <div class="modal-actions">
+      <button id="exportLangmuirCsvBtn">导出 I-V 表格 CSV</button>
+      <button id="exportLangmuirPngBtn">导出图 PNG</button>
+      <button data-close>关闭</button>
+    </div>
+  </dialog>
+
+  <script defer src="./app.js?v=20260516-probe-shell-fixed-blue-stretch"></script>
+</body>
+</html>
+

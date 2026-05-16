@@ -1,0 +1,9 @@
+﻿{
+  "name": "plasma-discharge-sim",
+  "version": "1.0.0",
+  "private": true,
+  "description": "3D plasma discharge virtual lab with Paschen and Langmuir experiments",
+  "scripts": {
+    "start": "python -m http.server 8080"
+  }
+}
